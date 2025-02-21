@@ -339,16 +339,32 @@ void sr_nat_forward_tcp_to_external(struct sr_instance *sr, uint8_t *packet, uns
   sr_ip_hdr_t *ip_header_packet = (sr_ip_hdr_t*)(packet + sizeof(sr_ethernet_hdr_t));
   sr_tcp_hdr_t *tcp_header = NULL;
 
+  /*Variable for NAT mapping */
+  sr_nat_mapping *nat_mapping = NULL;
+
   uint16_t port_internal = 0;
-  printf("IN NAT ICMP TO EXTERNAL\n ");
+  printf("IN NAT TCP TO EXTERNAL\n ");
 
   tcp_header = (sr_tcp_hdr_t*)(packet + sizeof(sr_ethernet_hdr_t) + sizeof(sr_ip_hdr_t));
   port_internal = tcp_header->sport;
   printf("port internal %d\n",port_internal);
+
+  /* check sum TCP packet */
+
+  /* check nat_mapping */
   
+  /* check flags */
+  if (getFlag_tcp_header(tcp_header) & FLAG_SYN)
+  {
+
+  }
+
 }
 
+void create_mapping()
+{
 
+}
 
 void defunct_mapping(struct sr_nat *nat, struct sr_nat_mapping *mapping)
 {
